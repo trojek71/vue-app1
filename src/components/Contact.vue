@@ -5,18 +5,10 @@
   <b-card title="Card Title" no-body>
     <b-card-header header-tag="nav">
       <b-nav card-header tabs>
-       <li>
-          <router-link to="/">Moje Kontakty</router-link>
-        </li>
-        <li>
-          <router-link to="/lista">Lista kontaktów</router-link>
-        </li>
-        <li>
-          <router-link to="/dodaj">Dodaj kontakt</router-link>
-        </li>
-        <li>
-          <router-link to="/kasuj">Kasuj kontakt</router-link>
-        </li>
+       <b-nav-item to="/" exact exact-active-class="active">Moje Kontakty</b-nav-item>       
+       <b-nav-item to="/lista" exact exact-active-class="active">Lista kontaktów</b-nav-item>
+       <b-nav-item to="/dodaj" exact exact-active-class="active">Dodaj kontakt</b-nav-item>
+       <b-nav-item to="/kasuj" exact exact-active-class="active">Kasuj kontakt</b-nav-item>
       </b-nav>
     </b-card-header>
 
@@ -47,15 +39,5 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
