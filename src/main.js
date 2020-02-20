@@ -4,7 +4,7 @@ import Vue from 'vue'
 import './plugins/bootstrap-vue'
 import App from './App.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
-import router from './components/router'
+import router from './router/router'
 import VueRouter from 'vue-router'
 
 Vue.config.productionTip = false
