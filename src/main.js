@@ -10,6 +10,9 @@ import { ApolloClient } from "apollo-client";
 import VueApollo from "vue-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { WebSocketLink } from "apollo-link-ws";
+import 'bootstrap-css-only/css/bootstrap.min.css'
+import 'mdbvue/lib/css/mdb.min.css'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 Vue.config.productionTip = false
 const link = new WebSocketLink({
