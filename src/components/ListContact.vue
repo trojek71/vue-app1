@@ -1,21 +1,21 @@
 <template>
   <div id="user-table">
-    <mbd-tbl>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>email</th>
-          <th>Country</th>
-          <th>City</th>
-          <th>Street</th>
-          <th>House nr</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="contact in contacts" :key="contact.id">
+    <b-table-simple bordered  hover>
+      <b-thead head-variant="dark">
+        <b-tr>
+          <b-th>Id</b-th>
+          <b-th>First Name</b-th>
+          <b-th>Last Name</b-th>
+          <b-th>email</b-th>
+          <b-th>Country</b-th>
+          <b-th>City</b-th>
+          <b-th>Street</b-th>
+          <b-th>House nr</b-th>
+          <b-th>Action</b-th>
+        </b-tr>
+      </b-thead>
+      <b-tbody>
+        <b-tr v-for="contact in contacts" :key="contact.id">
           <td>{{contact.id}}</td>
           <td>{{contact.firstName}}</td>
           <td>{{contact.lastName}}</td>
@@ -26,16 +26,18 @@
           <td>{{contact.address.houseNr}}</td>
          
           <td>
-            <button @click="selectContact(contact)">Select</button>
-            <button @click="deleteContact(contact.address.id)">Delete</button>
+            <b-button @click="selectContact(contact)">Select</b-button>
+            <b-button @click="deleteContact(contact.address.id)">Delete</b-button>
             
           </td>
-        </tr>
+        </b-tr>
       
         
-      </tbody>
+      </b-tbody>
        
-    </mbd-tbl>
+    </b-table-simple>
+  </div>
+  <!--<div>
     <form>
          <label>Update contact</label>
         
@@ -48,11 +50,12 @@
          <input type="number" name="hause number" v-model="email"/>
          <input v-if="id" type="button" @click="updateContact(id, firstName, lastName, email)" value="Update">
        </form>
-  </div>
+  </div>-->
 </template>
 
 <script>
 import gql from "graphql-tag";
+
 
 const DEL_CONTACT = gql`
    mutation delete_addresses($id: uuid!) {
