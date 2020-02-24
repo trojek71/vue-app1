@@ -17,7 +17,7 @@
 
 <script>
   export default {
-      name: "ListContact",
+      name: "ListContact-old",
     data() {
       return {
         sortBy: 'age',

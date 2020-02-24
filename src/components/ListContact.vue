@@ -26,7 +26,7 @@
           <td>{{contact.address.houseNr}}</td>
          
           <td>
-            <b-button @click="selectContact(contact)" v-b-modal.modal-1  >Edit</b-button>
+            <b-button @click="selectContact(contact)" v-b-modal.modal-1>Edit</b-button>
             
             <b-button @click="deleteContact(contact.address.id)">Delete</b-button>
             
@@ -42,13 +42,13 @@
     <form>
          <label>Update contact</label>
         
-         <input type="text" name="firstName" v-model="firstName"/>
-         <input type="text" name="lastName" v-model="lastName"/>
-         <input type="text" name="emailName" v-model="email"/>
-         <input type="text" name="country" v-model="country"/>
-         <input type="text" name="city" v-model="city"/>
-         <input type="text" name="street" v-model="street"/>
-         <input type="number" name="hause number" v-model="email"/>
+         <b-form-input type="text" name="firstName" v-model="firstName"/>
+         <b-form-input type="text" name="lastName" v-model="lastName"/>
+         <b-form-input type="text" name="emailName" v-model="email"/>
+         <b-form-input type="text" name="country" v-model="country"/>
+         <b-form-input type="text" name="city" v-model="city"/>
+         <b-form-input type="text" name="street" v-model="street"/>
+         <b-form-input type="number" name="hause number" v-model="houseNr"/>
          <input v-if="id" type="button" @click="updateContact(id, firstName, lastName, email)" value="Update">
        </form>
   </b-modal>
@@ -161,7 +161,7 @@ methods: {
           this.city= contact.address.city;
           this.street= contact.address.street;
           this.houseNr= contact.address.houseNr;
-          this.dialog=true;
+          
     },
     clearForm(){
       this.id = null;
