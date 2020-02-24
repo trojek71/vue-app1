@@ -7,10 +7,12 @@
 <script>
 import Contact from './components/Contact.vue'
 
+
 export default {
   name: 'App',
   components: {
-    Contact
+    Contact,
+   
   }
 }
 </script>

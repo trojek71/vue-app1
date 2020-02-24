@@ -26,7 +26,8 @@
           <td>{{contact.address.houseNr}}</td>
          
           <td>
-            <b-button @click="selectContact(contact)">Select</b-button>
+            <b-button @click="selectContact(contact)" v-b-modal.modal-1  >Edit</b-button>
+            
             <b-button @click="deleteContact(contact.address.id)">Delete</b-button>
             
           </td>
@@ -36,8 +37,8 @@
       </b-tbody>
        
     </b-table-simple>
-  </div>
-  <!--<div>
+  
+  <b-modal id="modal-1">
     <form>
          <label>Update contact</label>
         
@@ -50,7 +51,8 @@
          <input type="number" name="hause number" v-model="email"/>
          <input v-if="id" type="button" @click="updateContact(id, firstName, lastName, email)" value="Update">
        </form>
-  </div>-->
+  </b-modal>
+  </div>
 </template>
 
 <script>
@@ -159,6 +161,7 @@ methods: {
           this.city= contact.address.city;
           this.street= contact.address.street;
           this.houseNr= contact.address.houseNr;
+          this.dialog=true;
     },
     clearForm(){
       this.id = null;
