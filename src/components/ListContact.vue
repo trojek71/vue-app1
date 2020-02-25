@@ -1,6 +1,6 @@
 <template>
   <div id="user-table">
-    <b-table-simple bordered  hover>
+    <b-table-simple bordered>
       <b-thead head-variant="dark">
         <b-tr>
           <b-th>Id</b-th>
@@ -153,6 +153,7 @@ methods: {
         email:email,
       },
     })
+    this.hideModal()
   },
  hideModal() {
         this.$refs.myCancel.hide()
