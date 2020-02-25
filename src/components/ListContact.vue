@@ -38,7 +38,7 @@
        
     </b-table-simple>
   
-  <b-modal id="modal-1">
+  <b-modal  hide-footer id="modal-1" ref="myCancel" title="Update contact" >
     <form>
          <label>Update contact</label>
         
@@ -49,8 +49,10 @@
          <b-form-input type="text" name="city" v-model="city"/>
          <b-form-input type="text" name="street" v-model="street"/>
          <b-form-input type="number" name="hause number" v-model="houseNr"/>
-         <input v-if="id" type="button" @click="updateContact(id, firstName, lastName, email)" value="Update">
+         
        </form>
+       <b-button variant="success"   @click="updateContact(id, firstName, lastName, email, country, city, street, houseNr)" value="Update">Update</b-button>
+       <b-button variant="danger"   @click="hideModal">Cancel</b-button>
   </b-modal>
   </div>
 </template>
@@ -85,7 +87,7 @@ const GET_CONTACTS = gql`
   }
 `;
 const UPDATE_CONTACT = gql`
-  mutation update_contacts($id: Int!, $firstName: String!, $lastName: String!, $email: String!){
+  mutation update_contacts($id: Int!, $firstName: String!, $lastName: String!, $email: String!, $country: String,){
     update_contacts(where: { id: {_eq: $id}}, _set:{firstName : $firstName, lastName: $lastName, email: $email}){
       affected_rows
     }
@@ -152,6 +154,9 @@ methods: {
       },
     })
   },
+ hideModal() {
+        this.$refs.myCancel.hide()
+ },
   selectContact(contact){
           this.id = contact.id;
           this.firstName = contact.firstName;
