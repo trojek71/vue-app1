@@ -41,15 +41,17 @@
   <b-modal  hide-footer id="modal-1" ref="myCancel" title="Update contact" >
     <form>
          <label>Update contact</label>
-        
-         <b-form-input type="text" name="firstName" v-model="firstName"/>
+        <b-container fluid>
+          <b-row class="my-1">
+         <b-form-input type="text" name="firstName" id="input-small" size="sm" placeholder="Enter your name" v-model="firstName"/>
+          </b-row>
          <b-form-input type="text" name="lastName" v-model="lastName"/>
          <b-form-input type="text" name="emailName" v-model="email"/>
          <b-form-input type="text" name="country" v-model="country"/>
          <b-form-input type="text" name="city" v-model="city"/>
          <b-form-input type="text" name="street" v-model="street"/>
          <b-form-input type="number" name="hause number" v-model="houseNr"/>
-         
+        </b-container>
        </form>
        <b-button variant="success"   @click="updateContact(id, firstName, lastName, email, country, city, street, houseNr)" value="Update">Update</b-button>
        <b-button variant="danger"   @click="hideModal">Cancel</b-button>
@@ -87,7 +89,7 @@ const GET_CONTACTS = gql`
   }
 `;
 const UPDATE_CONTACT = gql`
-  mutation update_contacts($id: Int!, $firstName: String!, $lastName: String!, $email: String!, $country: String,){
+  mutation update_contacts($id: Int!, $firstName: String!, $lastName: String!, $email: String!){
     update_contacts(where: { id: {_eq: $id}}, _set:{firstName : $firstName, lastName: $lastName, email: $email}){
       affected_rows
     }
@@ -151,6 +153,7 @@ methods: {
         firstName: firstName,
         lastName: lastName,
         email:email,
+        
       },
     })
     this.hideModal()
@@ -174,11 +177,23 @@ methods: {
       this.firstName = '';
       this.lastName = '';
       this.email = '';
+      this.country ='';
+      this.city= '';
+      this.street='';
+      this.houseNr='';
     }    
     }
   }
 </script>
 
-<style scoped>
-
+<style>
+modal
+{
+  padding: 12px;
+  border: 2px solid #cfd9db;
+  background-color: #ffffff;
+  border-radius: 0.25em;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);
+  margin:10px;
+}
 </style>
