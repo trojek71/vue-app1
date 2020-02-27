@@ -28,7 +28,7 @@
           <td>
             <b-button @click="selectContact(contact)" v-b-modal.modal-1>Edit</b-button>
             
-            <b-button @click="deleteContact(contact.address.id)">Delete</b-button>
+            <b-button @click="deleteContact(contact.address.ad_id)">Delete</b-button>
             
           </td>
         </b-tr>
@@ -53,7 +53,7 @@
          <b-form-input type="number" name="hause number" v-model="houseNr"/>
         </b-container>
        </form>
-       <b-button variant="success"   @click="updateContact(id, firstName, lastName, email, country, city, street, houseNr)" value="Update">Update</b-button>
+       <b-button variant="success"   @click="updateContact(id, firstName, lastName, email, ad_id, country, city, street, houseNr)" value="Update">Update</b-button>
        <b-button variant="danger"   @click="hideModal">Cancel</b-button>
   </b-modal>
   </div>
@@ -64,8 +64,8 @@ import gql from "graphql-tag";
 
 
 const DEL_CONTACT = gql`
-   mutation delete_addresses($id: uuid!) {
-     delete_addresses(where: { id: { _eq: $id } }) {
+   mutation delete_addresses($ad_id: uuid!) {
+     delete_addresses(where: { ad_id: { _eq: $ad_id } }) {
        affected_rows
       
      }
@@ -79,7 +79,7 @@ const GET_CONTACTS = gql`
       lastName
       email
       address {
-        id
+        ad_id
         country
         city
         street
@@ -89,8 +89,11 @@ const GET_CONTACTS = gql`
   }
 `;
 const UPDATE_CONTACT = gql`
-  mutation update_contacts($id: Int!, $firstName: String!, $lastName: String!, $email: String!){
+  mutation update_contacts($id: Int!, $firstName: String!, $lastName: String!, $email: String!, $ad_id: uuid, $country: String, $city:String, $street:String, $houseNr:Int ){
     update_contacts(where: { id: {_eq: $id}}, _set:{firstName : $firstName, lastName: $lastName, email: $email}){
+      affected_rows
+    }
+    update_addresses(where:{ad_id: {_eq: $ad_id}}, _set:{country: $country, city: $city, street: $street, houseNr: $houseNr}){
       affected_rows
     }
   }
@@ -108,6 +111,7 @@ const UPDATE_CONTACT = gql`
           firstName:'',
           lastName:'',
           email:'',
+         
           country:'',
           city: '',
           street:'',
@@ -133,19 +137,19 @@ apollo:{
 methods: {
  
 
-  deleteContact(id){
+  deleteContact(ad_id){
          
           this.$apollo.mutate({
               mutation:  DEL_CONTACT,
               variables:{
-                id: id,
+                ad_id: ad_id,
                 
                 },
             }
           )
       
         },    
-  updateContact(id, firstName, lastName, email){
+  updateContact(id, firstName, lastName, email, ad_id, country, city, street, houseNr){
     this.$apollo.mutate({
       mutation: UPDATE_CONTACT,
       variables:{
@@ -153,7 +157,12 @@ methods: {
         firstName: firstName,
         lastName: lastName,
         email:email,
-        
+        ad_id:ad_id,
+        country: country,
+        city:city,
+        street:street,
+        houseNr:houseNr
+
       },
     })
     this.hideModal()
