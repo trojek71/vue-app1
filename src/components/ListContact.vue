@@ -111,7 +111,7 @@ const UPDATE_CONTACT = gql`
           firstName:'',
           lastName:'',
           email:'',
-         
+          ad_id:null,        
           country:'',
           city: '',
           street:'',
@@ -175,6 +175,7 @@ methods: {
           this.firstName = contact.firstName;
           this.lastName = contact.lastName;
           this.email = contact.email;
+          this.ad_id = contact.address.ad_id
           this.country= contact.address.country;
           this.city= contact.address.city;
           this.street= contact.address.street;
@@ -186,6 +187,7 @@ methods: {
       this.firstName = '';
       this.lastName = '';
       this.email = '';
+      this.ad_id ='';
       this.country ='';
       this.city= '';
       this.street='';
