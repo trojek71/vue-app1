@@ -1,15 +1,15 @@
 <template>
   <!-- Material form login -->
   <form @submit="submit">
-    <p class="h4 text-center mb-4">Sign in</p>
+    <p class="h4 text-center mb-4">Add Contact</p>
     <div class="grey-text">
       <mdb-input label="First Name" icon="envelope" type="text" v-model="firstName"/>
       <mdb-input label="Last Name" icon="lock" type="text" v-model="lastName"/>
       <mdb-input label="Email" icon="at" type="text" v-model="email"/>
-      <mdb-input label="Email" icon="at" type="text" v-model="country"/>
-      <mdb-input label="Email" icon="at" type="text" v-model="city"/>
-      <mdb-input label="Email" icon="at" type="text" v-model="street"/>
-      <mdb-input label="Email" icon="at" type="number" v-model="houseNr"/>
+      <mdb-input label="Country" icon="globe-europe" type="text" v-model="country"/>
+      <mdb-input label="City" icon="city" type="text" v-model="city"/>
+      <mdb-input label="Street" icon="road" type="text" v-model="street"/>
+      <mdb-input label="House nr" icon="home" type="number" v-model="houseNr"/>
     </div>
      <input class="button-primary" type="submit" value="Send" />
   </form>
