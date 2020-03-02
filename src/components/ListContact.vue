@@ -1,21 +1,21 @@
 <template>
   <div id="user-table">
-    <b-table-simple bordered>
-      <b-thead head-variant="dark">
-        <b-tr>
-          <b-th>Id</b-th>
-          <b-th>First Name</b-th>
-          <b-th>Last Name</b-th>
-          <b-th>email</b-th>
-          <b-th>Country</b-th>
-          <b-th>City</b-th>
-          <b-th>Street</b-th>
-          <b-th>House nr</b-th>
-          <b-th>Action</b-th>
-        </b-tr>
-      </b-thead>
-      <b-tbody>
-        <b-tr v-for="contact in contacts" :key="contact.id">
+    <mdb-tbl >
+      <mdb-tbl-head >
+        <tr>
+          <th>Id</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>email</th>
+          <th>Country</th>
+          <th>City</th>
+          <th>Street</th>
+          <th>House nr</th>
+          <th>Action</th>
+        </tr>
+      </mdb-tbl-head>
+      <mdb-tbl-body>
+        <tr v-for="contact in contacts" :key="contact.id">
           <td>{{contact.id}}</td>
           <td>{{contact.firstName}}</td>
           <td>{{contact.lastName}}</td>
@@ -31,12 +31,12 @@
             <b-button @click="deleteContact(contact.address.ad_id)">Delete</b-button>
             
           </td>
-        </b-tr>
+        </tr>
       
         
-      </b-tbody>
+      </mdb-tbl-body>
        
-    </b-table-simple>
+    </mdb-tbl>
   
   <b-modal  hide-footer id="modal-1" ref="myCancel" title="Update contact" >
     <form>
@@ -61,7 +61,7 @@
 
 <script>
 import gql from "graphql-tag";
-
+import { mdbTbl, mdbTblHead, mdbTblBody } from 'mdbvue';
 
 const DEL_CONTACT = gql`
    mutation delete_addresses($ad_id: uuid!) {
@@ -102,6 +102,11 @@ const UPDATE_CONTACT = gql`
 
   export default {
     name: 'user-table',
+    components: {
+      mdbTbl,
+      mdbTblHead,
+      mdbTblBody
+    },
   
   data(){
   return {
@@ -197,7 +202,7 @@ methods: {
   }
 </script>
 
-<style>
+<style scoped>
 modal
 {
   padding: 12px;
@@ -207,4 +212,20 @@ modal
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.08);
   margin:10px;
 }
+
+  .fixed-header .table {
+    width: auto;
+  }
+
+  .fixed-header thead {
+    display: block;
+    position: relative;
+  }
+
+  .fixed-header tbody {
+    display: block;
+    height: 800px;
+    overflow-y: scroll;
+  }
+
 </style>

@@ -17,7 +17,7 @@
         <router-view />
       </b-card-text>
 
-      <b-button variant="primary">Go somewhere</b-button>
+      
     </b-card-body>
   </b-card>
 </div>
