@@ -26,9 +26,9 @@
           <td>{{contact.address.houseNr}}</td>
          
           <td>
-            <b-button @click="selectContact(contact)" v-b-modal.modal-1>Edit</b-button>
+            <mdb-btn color="primary" @click="selectContact(contact)" v-b-modal.modal-1>Edit</mdb-btn>
             
-            <b-button @click="deleteContact(contact.address.ad_id)">Delete</b-button>
+            <mdb-btn color="danger" @click="deleteContact(contact.address.ad_id)">Delete</mdb-btn>
             
           </td>
         </tr>
@@ -50,7 +50,7 @@
          <b-form-input type="text" name="country" v-model="country"/>
          <b-form-input type="text" name="city" v-model="city"/>
          <b-form-input type="text" name="street" v-model="street"/>
-         <b-form-input type="number" name="hause number" v-model="houseNr"/>
+         <b-form-input type="number" name="house number" v-model="houseNr"/>
         </b-container>
        </form>
        <b-button variant="success"   @click="updateContact(id, firstName, lastName, email, ad_id, country, city, street, houseNr)" value="Update">Update</b-button>
@@ -61,7 +61,7 @@
 
 <script>
 import gql from "graphql-tag";
-import { mdbTbl, mdbTblHead, mdbTblBody } from 'mdbvue';
+import { mdbTbl, mdbTblHead, mdbTblBody,mdbBtn } from 'mdbvue';
 
 const DEL_CONTACT = gql`
    mutation delete_addresses($ad_id: uuid!) {
@@ -105,7 +105,8 @@ const UPDATE_CONTACT = gql`
     components: {
       mdbTbl,
       mdbTblHead,
-      mdbTblBody
+      mdbTblBody,
+      mdbBtn
     },
   
   data(){
